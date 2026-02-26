@@ -1,0 +1,17 @@
+services:
+  django-backend:
+    build: ./backend
+    container_name: django-backend
+    ports:
+      - "8000:8000"
+    environment:
+      - DJANGO_SECRET_KEY=mysupersecretkey123
+      - FRONTEND_URL=http://localhost:3000
+
+  nextjs-frontend:
+    build: ./frontend
+    container_name: nextjs-frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - django-backend

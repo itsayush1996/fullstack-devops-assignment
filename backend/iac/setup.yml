@@ -1,0 +1,28 @@
+---
+- name: DevOps Infrastructure Setup
+  hosts: web
+  become: yes
+
+  tasks:
+
+  - name: Install packages
+    apt:
+      name:
+        - python3
+        - python3-pip
+        - nodejs
+        - npm
+        - docker.io
+      state: present
+      update_cache: yes
+
+  - name: Start Docker
+    service:
+      name: docker
+      state: started
+      enabled: yes
+
+  - name: Clone Project Repo
+    git:
+      repo: https://github.com/itsayush1996/devops-assignment.git
+      dest: /home/ubuntu/devops-assignment
