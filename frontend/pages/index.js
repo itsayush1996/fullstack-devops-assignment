@@ -1,3 +1,5 @@
+
+
 import Chat from "../components/chat/Main";
 import Layout from "../components/chat/Layout";
 import {getServerSidePropsAuthHelper} from "../api/auth";
@@ -6,7 +8,10 @@ import {useEffect} from "react";
 import {fetchCsrfTokenThunk} from "../redux/auth";
 
 function Home({isAuthenticated}) {
-    console.log("Home");
+  useEffect(() => {
+    console.log("Frontend Loaded Successfully");
+  }, []);
+  useEffect(() => {
     if (!isAuthenticated) {
         return <div>You are not authenticated, login first</div>;
     }
